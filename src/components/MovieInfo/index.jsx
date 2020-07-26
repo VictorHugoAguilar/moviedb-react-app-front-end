@@ -43,10 +43,8 @@ class MovieInfo extends Component {
                             rating: data.vote_average,
                             companies: data.production_companies,
                             release: data.release_date,
-                            startSeries: data.first_air_date,
                             background: data.backdrop_path,
                             runtime: data.runtime,
-                            episodeRuntime: data.episode_run_time,
                             homepage: data.homepage
                         };
                     } else {
@@ -59,7 +57,7 @@ class MovieInfo extends Component {
     }
 
     render() {
-        const { movieInfo } = this.state
+        const { movieInfo } = this.state;
         let poster,
             title,
             name,
@@ -70,23 +68,19 @@ class MovieInfo extends Component {
             runtime,
             status,
             homepage,
-            rating,
-            startSeries,
-            episodeRuntime;
+            rating;
         let genero = [];
         let company = [];
 
-        movieInfo.map((info) => (
+        movieInfo.map( info => (
             title = info.title,
             name = info.name,
             tagline = info.tagline,
             overview = info.overview,
             runtime = info.runtime,
-            episodeRuntime = info.episodeRuntime,
             status = info.status,
             homepage = info.homepage,
             rating = info.rating,
-            startSeries = info.startSeries,
             release = info.release,
             background = `https://image.tmdb.org/t/p/original${info.background}`,
             poster = `https://image.tmdb.org/t/p/w500${info.poster}`,
@@ -104,7 +98,7 @@ class MovieInfo extends Component {
                         <div className="container-box">
                             <div className="infoBox">
                                 <div className="poster">
-                                    <img src={poster} />
+                                    <img alt={title} src={poster} />
                                 </div>
                                 <div className="info">
                                     <div className="movie-name">
@@ -134,7 +128,7 @@ class MovieInfo extends Component {
                                         <div className="column">
                                             <div className="details">
                                                 <h4>Fecha de estreno</h4>
-                                                <p>{release}{startSeries}</p>
+                                                <p>{release}</p>
                                             </div>
                                             <div className="details">
                                                 <h4>Estado</h4>
@@ -144,7 +138,7 @@ class MovieInfo extends Component {
                                         <div className="column">
                                             <div className="details">
                                                 <h4>Duración</h4>
-                                                <p>{runtime}{episodeRuntime} min</p>
+                                                <p>{runtime} min</p>
                                             </div>
                                             <div className="details">
                                                 <h4>Estadísticas</h4>
@@ -154,7 +148,7 @@ class MovieInfo extends Component {
                                     </div>
                                     <div className="links">
                                         <Button className="mr-2" variant="info"><Link className="link" to="/"> <FontAwesomeIcon icon={faArrowCircleLeft} /> Volver a la lista de Películas</Link></Button>
-                                        <Button className="mr-2" variant="info"><a className="link" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
+                                        <Button className="mr-2" variant="info"><a className="link" rel="noopener noreferrer" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
                                     </div>
                                 </div>
                             </div>
