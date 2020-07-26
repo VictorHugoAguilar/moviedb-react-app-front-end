@@ -6,6 +6,7 @@ import './App.scss';
 // Importamos los componentes personalizados
 import  Header  from './components/Header';
 import Footer from './components/Footer';
+import FullListMovies from './components/FullListMovies';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <Header />
       <div className="container">
+        <FullListMovies />
       </div>
       <Footer />
     </div>

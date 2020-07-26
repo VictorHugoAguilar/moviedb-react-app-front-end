@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 class Movie extends Component{
 
@@ -10,10 +13,11 @@ class Movie extends Component{
             sessionStorage.setItem('movieId', id);
             return false;
         }
+        const styles = {width: '100%', height: '100%', backgroundImage:httpImage ? (`url(${httpImage})`) : null }
 
         return(
             <div className="movie">
-                <Link to="/MovieInfo">
+                 <Link to="/MovieInfo"> 
                     <div className="movie-item" 
                          onClick={(e) => {
                                     this.selectMovie(movie.id); 
@@ -33,7 +37,7 @@ class Movie extends Component{
                                 <h6>{movie.title}{movie.name}</h6>
                             </div>
                     </div>
-                </Link>
+                  </Link>
             </div>
         );
     }

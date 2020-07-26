@@ -10,8 +10,6 @@ import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-boots
 
 class Header extends Component {
 
-    
-
     render() {
         return (<div className="header">
             <Navbar className="navbar" bg="dark" variant="dark" expand="lg">
