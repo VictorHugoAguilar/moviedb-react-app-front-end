@@ -1,4 +1,4 @@
-import CONSTANTS from '../type';
+import TYPE from '../type';
 
 const initialState = {
     movies: []
@@ -8,7 +8,7 @@ const initialState = {
 const listMoviesReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case CONSTANTS.GET_CARTELERA:
+        case TYPE.GET_CARTELERA:
             return {
                 ...state,
                 movies:action.payload

@@ -1,4 +1,4 @@
-const CONSTANTS = {
+const TYPE = {
     GET_CARTELERA : "GET_CARTELERA",
     GET_ESTRENO: "GET_ESTRENO",
     GET_POPULAR : "GET_POPULAR",
@@ -7,4 +7,4 @@ const CONSTANTS = {
     GET_SEARCH : "GET_SEARCH"
 }
 
-export default CONSTANTS;
+export default TYPE;

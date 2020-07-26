@@ -1,23 +1,24 @@
-import CONSTANTS from '../type';
+import TYPE from '../type';
+import CONSTANTS from '../kconstants'
 
 import $ from 'jquery';
 
-const ruta = 'https://api.themoviedb.org/3';
-const apiKey = '7c3478971dd7448978e62b257855f491';
-const language = 'es-ES';
+const RUTA = CONSTANTS.RUTA;
+const API_KEY = CONSTANTS.API_KEY;
+const LANGUAGE = CONSTANTS.LANGUAGE;
 
 export const getCartelera = () => dispatch => {
-    const url = `${ruta}/movie/now_playing?api_key=${apiKey}&language=${language}&page=1`
+    const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
     fetch(url)
         .then(response => response.json())
         .then(movies => dispatch({
-            type: CONSTANTS.GET_CARTELERA,
+            type: TYPE.GET_CARTELERA,
             payload: movies.results
         }))
 }
 
 export const searchMovies = (query) => dispatch => {
-    const url = `${ruta}/search/movie?api_key=${apiKey}&query=${query}`
+    const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`
 
     if (query === '') {
         dispatch(getCartelera())
@@ -27,15 +28,14 @@ export const searchMovies = (query) => dispatch => {
         fetch(url)
             .then(response => response.json())
             .then((movies) => {
-                //remove error on empty string, and set movies to default upcoming
                 if (movies.results.error) {
                     dispatch(getCartelera())
                 } else {
                     dispatch({
-                        type: CONSTANTS.GET_SEARCH,
+                        type: TYPE.GET_SEARCH,
                         payload: movies.results
                     })
                 }
-            }).catch(error => console.error('Cant fetch any data', error))
+            }).catch(error => console.error('No podemos obtener datos del servidor', error))
     }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+// Importamos los estilos personalizados
 import './Movie.scss';
-
+// Importamos componentes de bootstrap
+import { Card, Button } from 'react-bootstrap';
+// Importamos los componentes de fontawesome e iconos
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faHandPointRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-
-import { Card, Button } from 'react-bootstrap';
 
 class Movie extends Component {
     selectMovie(id) {
@@ -26,26 +26,28 @@ class Movie extends Component {
                     <Card.Body>
                         <Card.Title>{movie.title} - ( {movie.original_title} )</Card.Title>
                         <Card.Text>
-                            {`${overview.substr(0, 250)}... `}
-                            <Link to="/MovieInfo" > 
+                            <span className="small">
+                                {`${overview.substr(0, 100)}... `}
+                            </span>
+                            <Link to="/MovieInfo" >
                                 <Button size="sm" variant="outline-dark" onClick={(e) => {
-                                        this.selectMovie(movie.id);
-                                        this.props.setPage()
+                                    this.selectMovie(movie.id);
+                                    this.props.setPage()
                                 }}> más info aquí </Button>
                             </Link>
-                            <div class="movie-estadist">
-                                <div className="movie-estadist-bloque">
+                            <span className="movie-estadist">
+                                <span className="movie-estadist-bloque">
                                     <FontAwesomeIcon icon={faThumbsUp} /> {movie.vote_average}
                                     {movie.popularity}
-                                </div>
-                                <div className="movie-estadist-bloque">
+                                </span>
+                                <span className="movie-estadist-bloque">
                                     <FontAwesomeIcon icon={faHandPointRight} /> {movie.vote_average}
                                     {movie.vote_count}
-                                </div>
-                                <div className="movie-estadist-bloque">
+                                </span>
+                                <span className="movie-estadist-bloque">
                                     <FontAwesomeIcon icon={faStar} /> {movie.vote_average}
-                                    </div>
-                            </div>
+                                </span>
+                            </span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
