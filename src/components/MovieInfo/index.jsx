@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CONSTANTS from '../../kconstants/';
-import $ from 'jquery';
 // Importamos los componentes de fontawesome e iconos
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-
+// Importamos los estilos personalizados
 import './MovieInfo.scss';
-
+// Importamos los componentes desde react bootstrap
 import { Badge, Button } from 'react-bootstrap';
 
 const RUTA = CONSTANTS.RUTA;
@@ -20,14 +19,10 @@ class MovieInfo extends Component {
     }
 
     componentDidMount() {
-        console.log("compoenent componentDidMount");
-
         const { movieInfo } = this.state;
         // Obtenemos los datos del storage session
         let movieId = sessionStorage.getItem('movieId');
         let page = sessionStorage.getItem('Page');
-
-        console.log(movieId);
 
         // Construimos la ruta del enlace
         let url = `${RUTA}/${page}/${movieId}?api_key=${API_KEY}&append_to_response=credits&language=${LANGUAGE}`;
@@ -35,7 +30,6 @@ class MovieInfo extends Component {
         fetch(url)
             .then((response) => {
                 response.json().then((data) => {
-                    console.log(data);
                     let info;
                     if (response.status === 200) {
                         info = {
@@ -60,7 +54,6 @@ class MovieInfo extends Component {
                     }
                     movieInfo.push(info);
                     this.setState({ movieInfo });
-                    console.log({ movieInfo })
                 })
             })
     }
@@ -103,8 +96,6 @@ class MovieInfo extends Component {
             info.companies.map((compa) => (
                 company.push(compa.name)))
         ))
-
-        { console.log(homepage) }
         const styles = { width: '100%', backgroundImage: background ? (`url(${background})`) : null }
         return (
             <div className="movieInfo" style={styles}>
