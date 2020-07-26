@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import CONSTANTS from '../../kconstants/';
 // Importamos los componentes de fontawesome e iconos
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleLeft, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 // Importamos los estilos personalizados
 import './MovieInfo.scss';
 // Importamos los componentes desde react bootstrap
-import { Badge, Button } from 'react-bootstrap';
+import { Badge, Button, Alert } from 'react-bootstrap';
 
 const RUTA = CONSTANTS.RUTA;
 const API_KEY = CONSTANTS.API_KEY;
@@ -15,7 +15,7 @@ const LANGUAGE = CONSTANTS.LANGUAGE;
 
 // Declaramos las variables que rellenaremos desde el state
 let poster, title, name, tagline, overview, release, background,
-    runtime, status, homepage, rating;
+    runtime, status, homepage, rating, err, code;
 let genero = [];
 let company = [];
 
@@ -39,6 +39,7 @@ class MovieInfo extends Component {
                     let info;
                     if (response.status === 200) {
                         info = {
+                            code: 200,
                             tagline: data.tagline,
                             poster: data.poster_path,
                             genres: data.genres,
@@ -54,7 +55,10 @@ class MovieInfo extends Component {
                             homepage: data.homepage
                         };
                     } else {
-                        info = { name: "No se han recibido datos desde la API" };
+                        info = { 
+                            code: 500,
+                            error: "No se han recibido datos desde la API" 
+                        };
                     }
                     movieInfo.push(info);
                     this.setState({ movieInfo });
@@ -65,34 +69,48 @@ class MovieInfo extends Component {
     // Obtenemos los datos mapeandolo en las variables
     hadlerGetDataFromState() {
         const { movieInfo } = this.state;
-
-        movieInfo.map(info => (
-            title = info.title,
-            name = info.name,
-            tagline = info.tagline,
-            overview = info.overview,
-            runtime = info.runtime,
-            status = info.status,
-            homepage = info.homepage,
-            rating = info.rating,
-            release = info.release,
-            background = `https://image.tmdb.org/t/p/original${info.background}`,
-            poster = `https://image.tmdb.org/t/p/w500${info.poster}`,
-            info.genres.map((gene) => (
-                genero.push(gene.name))
-            ),
-            info.companies.map((compa) => (
-                company.push(compa.name)))
-        ))
+        if (movieInfo[0] !== undefined && movieInfo[0].title) {
+            movieInfo.map(info => (
+                title = info.title,
+                name = info.name,
+                tagline = info.tagline,
+                overview = info.overview,
+                runtime = info.runtime,
+                status = info.status,
+                homepage = info.homepage,
+                rating = info.rating,
+                release = info.release,
+                background = `https://image.tmdb.org/t/p/original${info.background}`,
+                poster = `https://image.tmdb.org/t/p/w500${info.poster}`,
+                info.genres.map((gene) => (
+                    genero.push(gene.name))
+                ),
+                info.companies.map((compa) => (
+                    company.push(compa.name)))
+            ));
+        }else{
+            movieInfo.map(info => (
+                code = info.code,
+                err = info.error 
+                )
+            );
+        }
     }
 
     // Renderizamos el componente
     render() {
         this.hadlerGetDataFromState();
-
         const styles = { width: '100%', backgroundImage: background ? (`url(${background})`) : null }
         return (
             <div className="movieInfo" style={styles}>
+               { code === 500 ?  
+                <Alert variant="danger"  >
+                    <Alert.Heading> <FontAwesomeIcon icon={faExclamationCircle} />  Error 500 </Alert.Heading>
+                    <p>
+                    {err}
+                    </p>
+                </Alert>
+                :
                 <section className="infoSection">
                     <div className="outer-container">
                         <div className="container-box">
@@ -155,6 +173,7 @@ class MovieInfo extends Component {
                         </div>
                     </div>
                 </section>
+               }
             </div>
         );
     }
