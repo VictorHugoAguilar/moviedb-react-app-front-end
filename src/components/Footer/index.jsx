@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 // Importamos los estilos personalizados
 import './Footer.scss';
-// get our fontawesome imports
+// Importamos fontAwesomeIcon y el icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 
-
 class Footer extends Component {
-
-
     render() {
         return (
         <div className="footer">
@@ -21,7 +18,6 @@ class Footer extends Component {
     }
 
 }
-
 export default Footer;
 
 
