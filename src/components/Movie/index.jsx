@@ -11,6 +11,7 @@ import { faStar, faHandPointRight, faThumbsUp } from '@fortawesome/free-solid-sv
 class Movie extends Component {
     selectMovie(id) {
         sessionStorage.setItem('movieId', id);
+        console.log(id)
         return false;
     }
 
@@ -30,7 +31,7 @@ class Movie extends Component {
                                 {`${overview.substr(0, 100)}... `}
                             </span>
                             <Link to="/MovieInfo" >
-                                <Button size="sm" variant="outline-dark" onClick={(e) => {
+                                <Button size="sm" variant="outline-dark" onMouseDown={(e) => {
                                     this.selectMovie(movie.id);
                                     this.props.setPage()
                                 }}> más info aquí </Button>

@@ -8,7 +8,7 @@ const API_KEY = CONSTANTS.API_KEY;
 const LANGUAGE = CONSTANTS.LANGUAGE;
 
 export const getCartelera = () => dispatch => {
-    const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
+    const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=1`;
     fetch(url)
         .then(response => response.json())
         .then(movies => dispatch({
@@ -18,10 +18,10 @@ export const getCartelera = () => dispatch => {
 }
 
 export const searchMovies = (query) => dispatch => {
-    const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`
+    const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`;
 
     if (query === '') {
-        dispatch(getCartelera())
+        dispatch(getCartelera());
     } else {
         $('.list .active').removeClass('active');
 
@@ -29,12 +29,12 @@ export const searchMovies = (query) => dispatch => {
             .then(response => response.json())
             .then((movies) => {
                 if (movies.results.error) {
-                    dispatch(getCartelera())
+                    dispatch(getCartelera());
                 } else {
                     dispatch({
                         type: TYPE.GET_SEARCH,
                         payload: movies.results
-                    })
+                    });
                 }
             }).catch(error => console.error('No podemos obtener datos del servidor', error))
     }

@@ -6,6 +6,7 @@ import './App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FullListMovies from './components/FullListMovies';
+import MovieInfo from './components/MovieInfo';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <div className="container">
           <Route exact path="/" render={() => (
             <FullListMovies />
+          )} />
+          <Route path="/MovieInfo" render={() => (
+            <MovieInfo />
           )} />
         </div>
         <Footer />
