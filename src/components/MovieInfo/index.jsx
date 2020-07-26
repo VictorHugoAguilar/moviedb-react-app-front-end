@@ -13,6 +13,12 @@ const RUTA = CONSTANTS.RUTA;
 const API_KEY = CONSTANTS.API_KEY;
 const LANGUAGE = CONSTANTS.LANGUAGE;
 
+// Declaramos las variables que rellenaremos desde el state
+let poster, title, name, tagline, overview, release, background,
+    runtime, status, homepage, rating;
+let genero = [];
+let company = [];
+
 class MovieInfo extends Component {
     state = {
         movieInfo: []
@@ -56,23 +62,11 @@ class MovieInfo extends Component {
             })
     }
 
-    render() {
+    // Obtenemos los datos mapeandolo en las variables
+    hadlerGetDataFromState() {
         const { movieInfo } = this.state;
-        let poster,
-            title,
-            name,
-            tagline,
-            overview,
-            release,
-            background,
-            runtime,
-            status,
-            homepage,
-            rating;
-        let genero = [];
-        let company = [];
 
-        movieInfo.map( info => (
+        movieInfo.map(info => (
             title = info.title,
             name = info.name,
             tagline = info.tagline,
@@ -90,6 +84,12 @@ class MovieInfo extends Component {
             info.companies.map((compa) => (
                 company.push(compa.name)))
         ))
+    }
+
+    // Renderizamos el componente
+    render() {
+        this.hadlerGetDataFromState();
+
         const styles = { width: '100%', backgroundImage: background ? (`url(${background})`) : null }
         return (
             <div className="movieInfo" style={styles}>
