@@ -1,11 +1,16 @@
 import React from 'react';
 import Movie from '../Movie';
 
+// Importamos los estilos personalizados
+import './ListMovies.scss';
+// Importamos componentes de bootsrap
+import { CardColumns } from 'react-bootstrap';
+
 const ListMovie = (props) => {
 
     return (
-        <div className="listMovie">
-            <div className="wrap">
+        <div className="listMovies">
+            <CardColumns>
                 {props.movies?.map((movie) => (
                     <Movie
                         key={movie.id}
@@ -14,7 +19,7 @@ const ListMovie = (props) => {
                         setPage={props.setPage}
                     />
                 ))}
-            </div>
+            </CardColumns>
         </div>
     );
 }

@@ -1,0 +1,19 @@
+@import '../../assets/sass/colors.scss';
+.movie {
+    .movie-estadist {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .movie-estadist-bloque {
+            margin-top: 1em;
+            text-align: center;
+            width: 33%;
+        }
+        .movie-estadist-bloque:first-child {
+            border-right: 0.1em solid $medium;
+        }
+        .movie-estadist-bloque:last-child {
+            border-left: 0.1em solid $medium;
+        }
+    }
+}

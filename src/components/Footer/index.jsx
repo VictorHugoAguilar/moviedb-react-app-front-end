@@ -11,7 +11,7 @@ class Footer extends Component {
         <div className="footer">
             <p className="footer-text">desing, by 
             <FontAwesomeIcon icon={faCoffee} />
-            <a href="https://github.com/VictorHugoAguilar?tab=repositories" target="_blank">#victorHugo</a>.
+            <a rel="noopener noreferrer" href="https://github.com/VictorHugoAguilar?tab=repositories" target="_blank">#victorHugo</a>.
             </p>
         </div>
         );
