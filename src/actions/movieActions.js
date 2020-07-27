@@ -35,8 +35,6 @@ export const getByGenero = (gener) => dispatch => {
         .catch(error => console.error('No podemos obtener datos del servidor', error));
 }
 
-// https://api.themoviedb.org/3/discover/movie?api_key=7c3478971dd7448978e62b257855f491&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=80
-
 export const searchMovies = (query) => dispatch => {
     const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`;
     if (query === '') {
