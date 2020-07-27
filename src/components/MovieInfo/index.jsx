@@ -49,7 +49,6 @@ class MovieInfo extends Component {
                 response.json().then((data) => {
                     let info;
                     if (response.status === 200) {
-                        console.log(data)
                         info = {
                             code: 200,
                             tagline: data.tagline,
@@ -69,9 +68,9 @@ class MovieInfo extends Component {
                             crew: data.credits.crew
                         };
                     } else {
-                        info = { 
+                        info = {
                             code: 500,
-                            error: "No se han recibido datos desde la API" 
+                            error: "No se han recibido datos desde la API"
                         };
                     }
                     movieInfo.push(info);
@@ -82,7 +81,6 @@ class MovieInfo extends Component {
 
     // Obtenemos los datos mapeandolo en las variables
     hadlerGetDataFromState() {
-        console.log("hadlerGetDataFromState");
         const { movieInfo } = this.state;
         if (movieInfo[0] !== undefined && movieInfo[0].title) {
             movieInfo.map(info => (
@@ -104,29 +102,29 @@ class MovieInfo extends Component {
                     company.push(compa.name))
                 ),
                 info.cast.map((actor) => {
-                    let auxAct = { 
-                        "order":actor.order,
-                        "name":actor.name,
-                        "character":actor.character,
-                        "img":actor.profile_path
+                    let auxAct = {
+                        "order": actor.order,
+                        "name": actor.name,
+                        "character": actor.character,
+                        "img": actor.profile_path
                     }
                     cast.push(auxAct)
                 }),
                 info.crew.map((cre) => {
-                    let auxCre = { 
-                        "job":cre.job,
-                        "name":cre.name,
-                        "department":cre.department,
-                        "img":cre.profile_path
+                    let auxCre = {
+                        "job": cre.job,
+                        "name": cre.name,
+                        "department": cre.department,
+                        "img": cre.profile_path
                     }
                     crew.push(auxCre)
                 })
             ));
-        }else{
+        } else {
             movieInfo.map(info => (
                 code = info.code,
-                err = info.error 
-                )
+                err = info.error
+            )
             );
         }
     }
@@ -134,105 +132,107 @@ class MovieInfo extends Component {
     // Renderizamos el componente
     render() {
         this.hadlerGetDataFromState();
-        console.log("CREW", crew);
-        console.log("CAST", cast);
-        let httpImageBackground = (background === undefined) ? null : `https://image.tmdb.org/t/p/original${background}`;
-        let httpImagePoster = (poster === undefined) ? noImagen : `https://image.tmdb.org/t/p/w500${poster}`;
-        const styles = { width: '100%', backgroundImage: `url(${httpImageBackground})`  }
-        
+        let httpImageBackground = background ? `https://image.tmdb.org/t/p/original${background}` : null;
+        let httpImagePoster = poster ? `https://image.tmdb.org/t/p/w500${poster}` : noImagen;
+        const styles = { width: '100%', backgroundImage: `url(${httpImageBackground})` }
+
         return (
             <div className="movieInfo" style={styles}>
-               { code === 500 ?  
-                <Alert variant="danger"  >
-                    <Alert.Heading> <FontAwesomeIcon icon={faExclamationCircle} />  Error 500 </Alert.Heading>
-                    <p>
-                    {err}
-                    </p>
-                </Alert>
-                :
-                <section className="infoSection">
-                    <div className="outer-container">
-                        <div className="container-box">
-                            <div className="infoBox">
-                                <div className="poster">
-                                    <img alt={title} src={httpImagePoster} />
-                                </div>
-                                <div className="info">
-                                    <div className="movie-name">
-                                        <h1>{title}</h1>
-                                        <h4>{name}</h4>
+                {code === 500 ?
+                    <Alert variant="danger"  >
+                        <Alert.Heading> <FontAwesomeIcon icon={faExclamationCircle} />  Error 500 </Alert.Heading>
+                        <p>
+                            {err}
+                        </p>
+                    </Alert>
+                    :
+                    <section className="infoSection">
+                        <div className="outer-container">
+                            <div className="container-box">
+                                <div className="infoBox">
+                                    <div className="poster">
+                                        <img alt={title} src={httpImagePoster} />
                                     </div>
+                                    <div className="info">
+                                        <div className="movie-name">
+                                            <h1>{title}</h1>
+                                            <h4>{name}</h4>
+                                        </div>
 
-                                    <div className="overview">
-                                        <h4>{tagline}</h4>
-                                        <p>{overview}</p>
-                                    </div>
+                                        <div className="overview">
+                                            <h4>{tagline}</h4>
+                                            <p>{overview}</p>
+                                        </div>
 
-                                    <div className="actors">
-                                    <h4> Actores</h4>
-                                    {
-                                        cast.map( actor => {
-                                            let papel = actor.character ? `( ${actor.character} )`: actor.character;
-                                            return `${ actor.name } ${ papel } `;
-                                        })
-                                    }
-                                    </div>
-                                    
-                                    <div className="crews">
-                                    <h4> Crew </h4>
-                                    {
-                                        crew.map( cre => {
-                                            let job = cre.job ? `( ${cre.job} )`: cre.job;
-                                            return `${cre.name} ${job} `;
-                                        })
-                                    }
-                                    </div>
+                                        <div className="actors">
+                                            <h4> Actores</h4>
+                                            {
+                                                cast.map((actor, index) => {
+                                                    if(index < 12){
+                                                    let papel = actor.character ? `( ${actor.character} )` : actor.character;
+                                                    return `${actor.name} ${papel} `;
+                                                    }
+                                                })
+                                            }
+                                        </div>
 
-                                    <div className="genres-companies">
-                                        <h4> Genero</h4>
-                                        {genero.map((gene, index) => (
-                                            <Badge key={index} className="mr-2" variant="info">{gene}</Badge>
-                                        )
-                                        )}
+                                        <div className="crews">
+                                            <h4> Crew </h4>
+                                            {
+                                                crew.map((cre, index) => {
+                                                    if(index < 12){
+                                                    let job = cre.job ? `( ${cre.job} )` : cre.job;
+                                                    return `${cre.name} ${job} `;
+                                                    }
+                                                })
+                                            }
+                                        </div>
 
-                                        <h4> Compañia </h4>
-                                        {company.map((compa, index) => (
-                                            <Badge key={index} className="mr-2" variant="info">{compa}</Badge>
-                                        )
-                                        )}
-                                    </div>
-                                    <div className="detail-container">
-                                        <div className="column">
-                                            <div className="details">
-                                                <h4>Fecha de estreno</h4>
-                                                <p>{release}</p>
+                                        <div className="genres-companies">
+                                            <h4> Genero</h4>
+                                            {genero.map((gene, index) => (
+                                                <Badge key={index} className="mr-2" variant="info">{gene}</Badge>
+                                            )
+                                            )}
+
+                                            <h4> Compañia </h4>
+                                            {company.map((compa, index) => (
+                                                <Badge key={index} className="mr-2" variant="info">{compa}</Badge>
+                                            )
+                                            )}
+                                        </div>
+                                        <div className="detail-container">
+                                            <div className="column">
+                                                <div className="details">
+                                                    <h4>Fecha de estreno</h4>
+                                                    <p>{release}</p>
+                                                </div>
+                                                <div className="details">
+                                                    <h4>Estado</h4>
+                                                    <p>{status}</p>
+                                                </div>
                                             </div>
-                                            <div className="details">
-                                                <h4>Estado</h4>
-                                                <p>{status}</p>
+                                            <div className="column">
+                                                <div className="details">
+                                                    <h4>Duración</h4>
+                                                    <p>{runtime} min</p>
+                                                </div>
+                                                <div className="details">
+                                                    <h4>Valoraciones</h4>
+                                                    <p>{rating}/10</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="column">
-                                            <div className="details">
-                                                <h4>Duración</h4>
-                                                <p>{runtime} min</p>
-                                            </div>
-                                            <div className="details">
-                                                <h4>Valoraciones</h4>
-                                                <p>{rating}/10</p>
-                                            </div>
+                                        <div className="links">
+                                            <Button className="links-button mr-2" variant="info"><Link className="link" to="/"> <FontAwesomeIcon icon={faArrowCircleLeft} /> Volver a la lista de Películas</Link></Button>
+                                            <Button className="links-button mr-2" variant="info"><a className="link" rel="noopener noreferrer" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
                                         </div>
-                                    </div>
-                                    <div className="links">
-                                        <Button className="links-button mr-2" variant="info"><Link className="link" to="/"> <FontAwesomeIcon icon={faArrowCircleLeft} /> Volver a la lista de Películas</Link></Button>
-                                        <Button className="links-button mr-2" variant="info"><a className="link" rel="noopener noreferrer" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-               }
+                    </section>
+                }
             </div>
         );
     }

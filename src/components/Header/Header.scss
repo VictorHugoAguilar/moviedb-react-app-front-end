@@ -1,5 +1,9 @@
 @import '../../assets/sass/colors.scss';
 .header {
+    .list {}
+    .active {
+        color: $dark;
+    }
     .navbar-input {
         width: 100% !important;
         border-radius: 0.5em;

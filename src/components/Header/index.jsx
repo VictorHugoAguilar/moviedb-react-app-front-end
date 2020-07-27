@@ -10,6 +10,10 @@ import { Navbar, Nav,  NavDropdown } from 'react-bootstrap';
 
 
 class Header extends Component {
+    
+    componentDidMount(){
+        this.props.setActive()
+    }
 
     render() {
         return (<div className="header">
@@ -18,7 +22,7 @@ class Header extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="mr-auto navbar-nav">
-                        <Nav.Link  className="navlink" href="#home" >En Cartelera</Nav.Link>
+                        <Nav.Link  className="navlink card active" href="#home" onClick={(e) => this.props.getCartelera(e.target.value)}>En Cartelera</Nav.Link>
                         <Nav.Link className="navlink" href="#home">Estrenos</Nav.Link>
                         <Nav.Link className="navlink" href="#home">Populares</Nav.Link>
                         <Nav.Link  className="navlink" href="#home">Top Rated</Nav.Link>

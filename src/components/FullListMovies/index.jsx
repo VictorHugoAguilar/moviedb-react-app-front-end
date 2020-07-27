@@ -12,6 +12,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { getCartelera, searchMovies } from '../../actions';
 // Importamos los estilos personalizados
 import './FullListMovies.scss';
+import $ from "jquery";
 
 
 class FullListMovies extends Component {
@@ -26,6 +27,13 @@ class FullListMovies extends Component {
         return false;
     }
 
+    setActive = () => {
+            $('.list li').click(function () {
+              $('.list .active').removeClass('active');
+              $(this).addClass('active');
+            }) 
+      }
+
     componentDidUpdate() {
         // console.log("componentDidUpdate FullListMovies",this.props.movies.length);
     }
@@ -33,7 +41,10 @@ class FullListMovies extends Component {
     render() {
         return (
             <Fragment >
-                <Header searchData={this.props.searchMovies} />
+                <Header 
+                    searchData={this.props.searchMovies}
+                    getCartelera={this.props.getCartelera} 
+                    setActive={this.setActive}/>
                 <div className="container fullListMovies">
                     {this.props.movies.length === 0 ?
                         <div className="fullListMovies-Alert">

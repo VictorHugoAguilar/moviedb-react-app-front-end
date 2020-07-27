@@ -8,6 +8,7 @@ const API_KEY = CONSTANTS.API_KEY;
 const LANGUAGE = CONSTANTS.LANGUAGE;
 
 export const getCartelera = () => dispatch => {
+    $('.list').addClass('active');
     const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=1`;
     fetch(url)
         .then(response => response.json())
@@ -42,4 +43,39 @@ export const searchMovies = (query) => dispatch => {
                 }
             }).catch(error => console.error('No podemos obtener datos del servidor', error));
     }
+}
+
+
+export const mostPopular = () => dispatch => {
+    const url = `${RUTA}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
+    fetch(url)
+    .then(response => response.json())
+    .then(movies => dispatch({
+        type:TYPE.GET_POPULAR,
+        payload: movies.results
+    }))
+    .catch(error => console.error('No podemos obtener datos del servidor', error));
+}
+
+export const estrenos = () => dispatch => {
+    $('.list .card').addClass('active');
+    const url = `${RUTA}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
+    fetch(url)
+    .then(response => response.json())
+    .then(movies => dispatch({
+        type:TYPE.GET_ESTRENO,
+        payload: movies.results
+    }))
+    .catch(error => console.error('No podemos obtener datos del servidor', error));
+}
+
+export const topRated = () => dispatch => {
+    const url = `${RUTA}/movie/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
+    fetch(url)
+    .then(response => response.json())
+    .then(movies => dispatch({
+        type:TYPE.GET_TOP_RATED,
+        payload: movies.results
+    }))
+    .catch(error => console.error('No podemos obtener datos del servidor', error));
 }

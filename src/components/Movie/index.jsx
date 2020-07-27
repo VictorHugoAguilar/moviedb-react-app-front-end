@@ -13,17 +13,12 @@ import noImagen from '../../assets/img/noimg.png'
 class Movie extends Component {
     selectMovie(id) {
         sessionStorage.setItem('movieId', id);
-        console.log(id)
         return false;
-    }
-
-    componentDidUpdate(){
-        console.log(this.props.movie.poster_path)
     }
 
     render() {
         const { movie } = this.props;
-        let httpImage = (movie.poster_path === null) ? noImagen :`https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        let httpImage = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : noImagen;
         let overview = movie.overview;
 
         return (
