@@ -9,7 +9,7 @@ import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 // Importamos las acciones
-import { getCartelera, searchMovies,getMostPopular, getEstrenos, getTopRated  } from '../../actions';
+import { getCartelera, searchMovies, getMostPopular, getEstrenos, getTopRated, getByGenero } from '../../actions';
 // Importamos los estilos personalizados
 import './FullListMovies.scss';
 import $ from "jquery";
@@ -28,7 +28,7 @@ class FullListMovies extends Component {
     }
 
     setActive = () => {
-        $('.list li').click(function () {
+        $('.list li').click(function() {
             $('.list .active').removeClass('active');
             $(this).addClass('active');
         })
@@ -39,32 +39,39 @@ class FullListMovies extends Component {
     }
 
     render() {
-        return (
-            <Fragment >
-                <Header
-                    searchData={this.props.searchMovies}
-                    getCartelera={this.props.getCartelera}
-                    getMostPopular={this.props.getMostPopular}
-                    getEstrenos={this.props.getEstrenos}
-                    getTopRated={this.props.getTopRated}
-                    setActive={this.setActive} />
-                <div className="container fullListMovies">
-                    {this.props.movies.length === 0 ?
-                        <div className="fullListMovies-Alert">
-                            <Alert variant="danger"  >
-                                <Alert.Heading> <FontAwesomeIcon icon={faExclamationCircle} /> Película no encantrada </Alert.Heading>
-                                <p>
-                                    La película que ha buscado no se ha encontrado en la BD de THE MOVIE DB.
-                            </p>
-                            </Alert>
-                        </div>
-                        :
-                        <ListMovie movies={this.props.movies}
-                            setPage={this.setFetchMovies}
-                        />
-                    }
-                </div>
-            </Fragment>
+        return ( <
+            Fragment >
+            <
+            Header searchData = { this.props.searchMovies }
+            getCartelera = { this.props.getCartelera }
+            getMostPopular = { this.props.getMostPopular }
+            getEstrenos = { this.props.getEstrenos }
+            getTopRated = { this.props.getTopRated }
+            getByGenero = { this.props.getByGenero }
+            setActive = { this.setActive }
+            /> <
+            div className = "container fullListMovies" > {
+                this.props.movies.length === 0 ?
+                <
+                div className = "fullListMovies-Alert" >
+                <
+                Alert variant = "danger" >
+                <
+                Alert.Heading > < FontAwesomeIcon icon = { faExclamationCircle }
+                /> Película no encantrada </Alert.Heading >
+                <
+                p >
+                La película que ha buscado no se ha encontrado en la BD de THE MOVIE DB. <
+                /p> <
+                /Alert> <
+                /div> :
+                    <
+                    ListMovie movies = { this.props.movies }
+                setPage = { this.setFetchMovies }
+                />
+            } <
+            /div> <
+            /Fragment>
         );
     }
 }
@@ -73,4 +80,4 @@ const mapStateToProps = state => ({
     movies: state.movies.movies,
 })
 
-export default connect(mapStateToProps, { getCartelera, searchMovies, getMostPopular, getEstrenos, getTopRated })(FullListMovies);
+export default connect(mapStateToProps, { getCartelera, searchMovies, getMostPopular, getEstrenos, getTopRated, getByGenero })(FullListMovies);

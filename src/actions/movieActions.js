@@ -21,6 +21,22 @@ export const getCartelera = () => dispatch => {
         .catch(error => console.error('No podemos obtener datos del servidor', error));
 }
 
+export const getByGenero = (gener) => dispatch => {
+    $('.list').addClass('active');
+    const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&with_genres=${gener}&page=1&sort_by=popularity.desc`;
+    fetch(url)
+        .then(response => response.json())
+        .then(movies => {
+        console.log(movies.results)
+            dispatch({
+            type: TYPE.GET_BY_GENERO,
+            payload: movies.results
+        })})
+        .catch(error => console.error('No podemos obtener datos del servidor', error));
+}
+
+// https://api.themoviedb.org/3/discover/movie?api_key=7c3478971dd7448978e62b257855f491&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=80
+
 export const searchMovies = (query) => dispatch => {
     const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`;
     if (query === '') {
@@ -44,7 +60,6 @@ export const searchMovies = (query) => dispatch => {
             }).catch(error => console.error('No podemos obtener datos del servidor', error));
     }
 }
-
 
 export const getMostPopular = () => dispatch => {
     const url = `${RUTA}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=1`

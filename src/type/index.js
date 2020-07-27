@@ -3,8 +3,8 @@ const TYPE = {
     GET_ESTRENO: "GET_ESTRENO",
     GET_POPULAR : "GET_POPULAR",
     GET_TOP_RATED : "GET_TOP_RATED",
+    GET_SEARCH : "GET_SEARCH",
     GET_BY_GENERO : "GET_BY_GENERO",
-    GET_SEARCH : "GET_SEARCH"
 }
 
 export default TYPE;

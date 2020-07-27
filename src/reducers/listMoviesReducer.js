@@ -12,28 +12,37 @@ const listMoviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.payload
-            }
+            };
         case TYPE.GET_SEARCH: {
             return {
                 ...state,
                 movies: action.payload
             }
-        }
-        case TYPE.GET_ESTRENO:
+        };
+        case TYPE.GET_ESTRENO: {
             return {
                 ...state,
                 movies: action.payload
-            };
-        case TYPE.GET_POPULAR:
+            }
+        };
+        case TYPE.GET_POPULAR: {
             return {
                 ...state,
                 movies: action.payload
-            };
-        case TYPE.GET_TOP_RATED:
+            }
+        };
+        case TYPE.GET_TOP_RATED: {
             return {
                 ...state,
                 movies: action.payload
-            };
+            }
+        };
+        case TYPE.GET_BY_GENERO: {
+            return {
+                ...state,
+                movies: action.payload
+            }
+        };
         default: {
             return initialState;
         }

@@ -1,14 +1,11 @@
 import React from 'react';
 import Movie from '../Movie';
-
 // Importamos los estilos personalizados
 import './ListMovies.scss';
 // Importamos componentes de bootsrap
 import { CardColumns } from 'react-bootstrap';
 
 const ListMovie = (props) => {
-    console.log(props)
-
     return (
         <div className="listMovies">
             <CardColumns>
