@@ -9,7 +9,7 @@ import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 // Importamos las acciones
-import { getCartelera, searchMovies } from '../../actions';
+import { getCartelera, searchMovies,getMostPopular, getEstrenos, getTopRated  } from '../../actions';
 // Importamos los estilos personalizados
 import './FullListMovies.scss';
 import $ from "jquery";
@@ -28,11 +28,11 @@ class FullListMovies extends Component {
     }
 
     setActive = () => {
-            $('.list li').click(function () {
-              $('.list .active').removeClass('active');
-              $(this).addClass('active');
-            }) 
-      }
+        $('.list li').click(function () {
+            $('.list .active').removeClass('active');
+            $(this).addClass('active');
+        })
+    }
 
     componentDidUpdate() {
         // console.log("componentDidUpdate FullListMovies",this.props.movies.length);
@@ -41,10 +41,13 @@ class FullListMovies extends Component {
     render() {
         return (
             <Fragment >
-                <Header 
+                <Header
                     searchData={this.props.searchMovies}
-                    getCartelera={this.props.getCartelera} 
-                    setActive={this.setActive}/>
+                    getCartelera={this.props.getCartelera}
+                    getMostPopular={this.props.getMostPopular}
+                    getEstrenos={this.props.getEstrenos}
+                    getTopRated={this.props.getTopRated}
+                    setActive={this.setActive} />
                 <div className="container fullListMovies">
                     {this.props.movies.length === 0 ?
                         <div className="fullListMovies-Alert">
@@ -70,4 +73,4 @@ const mapStateToProps = state => ({
     movies: state.movies.movies,
 })
 
-export default connect(mapStateToProps, { getCartelera, searchMovies })(FullListMovies);
+export default connect(mapStateToProps, { getCartelera, searchMovies, getMostPopular, getEstrenos, getTopRated })(FullListMovies);

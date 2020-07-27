@@ -46,7 +46,7 @@ export const searchMovies = (query) => dispatch => {
 }
 
 
-export const mostPopular = () => dispatch => {
+export const getMostPopular = () => dispatch => {
     const url = `${RUTA}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
     fetch(url)
     .then(response => response.json())
@@ -57,7 +57,7 @@ export const mostPopular = () => dispatch => {
     .catch(error => console.error('No podemos obtener datos del servidor', error));
 }
 
-export const estrenos = () => dispatch => {
+export const getEstrenos = () => dispatch => {
     $('.list .card').addClass('active');
     const url = `${RUTA}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
     fetch(url)
@@ -69,7 +69,7 @@ export const estrenos = () => dispatch => {
     .catch(error => console.error('No podemos obtener datos del servidor', error));
 }
 
-export const topRated = () => dispatch => {
+export const getTopRated = () => dispatch => {
     const url = `${RUTA}/movie/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=1`
     fetch(url)
     .then(response => response.json())
