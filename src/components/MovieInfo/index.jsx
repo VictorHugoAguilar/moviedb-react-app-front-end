@@ -165,8 +165,8 @@ class MovieInfo extends Component {
                                         </div>
                                     </div>
                                     <div className="links">
-                                        <Button className="mr-2" variant="info"><Link className="link" to="/"> <FontAwesomeIcon icon={faArrowCircleLeft} /> Volver a la lista de Películas</Link></Button>
-                                        <Button className="mr-2" variant="info"><a className="link" rel="noopener noreferrer" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
+                                        <Button className="links-button mr-2" variant="info"><Link className="link" to="/"> <FontAwesomeIcon icon={faArrowCircleLeft} /> Volver a la lista de Películas</Link></Button>
+                                        <Button className="links-button mr-2" variant="info"><a className="link" rel="noopener noreferrer" href={homepage} target="_blank">Ir al sitio oficial</a></Button>
                                     </div>
                                 </div>
                             </div>

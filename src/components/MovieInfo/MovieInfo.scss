@@ -2,42 +2,105 @@
 .movieInfo {
     margin-top: 1em;
     height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    .infoBox {
-        display: flex;
-        box-sizing: border-box;
-        background-color: rgba(0, 0, 0, 0.5);
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        margin: 2em;
-        border-radius: 0.5em;
+    .link {
+        color: $ligthest;
+        text-decoration: none;
     }
     .poster img {
         z-index: 3;
     }
-    .info {
-        width: 50%;
-        padding: 2em 0.5em;
-        color: $ligth;
-        h4 {
-            margin-top: 0.3em;
+    @media (max-width: 720px) {
+        background-repeat: no-repeat;
+        background-size: cover;
+        .infoBox {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 2em;
+            border-radius: 0.5em;
+            display: flex;
+            flex-direction: column;
+        }
+        .poster {
+            width: 100% !important;
+            img {
+                width: 100%;
+            }
+        }
+        .info {
+            width: 100% !important;
+            padding: 2em 0.5em;
             color: $ligth;
+            h4 {
+                margin-top: 0.3em;
+                color: $ligth;
+            }
         }
     }
-    .outer-container {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.85) 10%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.95) 90%);
-        background-attachment: fixed;
-        margin: 0;
-        height: 70vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    @media (max-width: 1199px) {
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 1em;
+        .infoBox {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 2em;
+            border-radius: 0.5em;
+            display: flex;
+            justify-content: space-around;
+        }
+        .poster {
+            width: 30%;
+            img {
+                width: 100%;
+            }
+        }
+        .info {
+            width: 65%;
+            padding: 2em 0.5em;
+            color: $ligth;
+            h4 {
+                margin-top: 0.3em;
+                color: $ligth;
+            }
+        }
+        .links {
+            margin-top: 0.5em;
+            .links-button {
+                margin-top: 0.5em;
+                display: inline-block;
+                width: 100%;
+            }
+        }
     }
-    .link {
-        color: $ligthest;
-        text-decoration: none;
+    @media (min-width: 1200px) {
+        background-repeat: no-repeat;
+        background-size: cover;
+        .infoBox {
+            display: flex;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 2em;
+            border-radius: 0.5em;
+        }
+        .info {
+            width: 50%;
+            padding: 2em 0.5em;
+            color: $ligth;
+            h4 {
+                margin-top: 0.3em;
+                color: $ligth;
+            }
+        }
+        .outer-container {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85) 10%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.95) 90%);
+            background-attachment: fixed;
+            margin: 0;
+            height: 70vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
