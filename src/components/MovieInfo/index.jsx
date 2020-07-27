@@ -24,6 +24,15 @@ class MovieInfo extends Component {
         movieInfo: []
     }
 
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidUpdate() {
+        genero = [];
+        company = [];
+    }
+
     componentDidMount() {
         const { movieInfo } = this.state;
         // Obtenemos los datos del storage session
@@ -159,7 +168,7 @@ class MovieInfo extends Component {
                                                 <p>{runtime} min</p>
                                             </div>
                                             <div className="details">
-                                                <h4>Estadísticas</h4>
+                                                <h4>Valoraciones</h4>
                                                 <p>{rating}/10</p>
                                             </div>
                                         </div>

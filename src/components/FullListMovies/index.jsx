@@ -13,7 +13,7 @@ import { getCartelera } from '../../actions';
 class FullListMovies extends Component {
 
     componentDidMount() {
-        //set upcoming movies as a default
+        // Seteamos por defecto las de cartelera
         this.props.getCartelera();
     }
 
@@ -23,9 +23,10 @@ class FullListMovies extends Component {
     }
 
     render() {
-        return (
-        <ListMovie movies={this.props.movies}
-            setPage={this.setFetchMovies} />
+        return ( <
+            ListMovie movies = { this.props.movies }
+            setPage = { this.setFetchMovies }
+            />
         );
     }
 }
