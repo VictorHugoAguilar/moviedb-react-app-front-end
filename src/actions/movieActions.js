@@ -11,31 +11,35 @@ export const getCartelera = () => dispatch => {
     const url = `${RUTA}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=1`;
     fetch(url)
         .then(response => response.json())
-        .then(movies => dispatch({
+        .then(movies => {
+        console.log(movies.results)
+            dispatch({
             type: TYPE.GET_CARTELERA,
             payload: movies.results
-        }))
+        })})
+        .catch(error => console.error('No podemos obtener datos del servidor', error));
 }
 
 export const searchMovies = (query) => dispatch => {
     const url = `${RUTA}/search/movie?api_key=${API_KEY}&query=${query}`;
-
     if (query === '') {
         dispatch(getCartelera());
     } else {
         $('.list .active').removeClass('active');
-
+        console.log(query)
+        console.log(url);
         fetch(url)
             .then(response => response.json())
             .then((movies) => {
                 if (movies.results.error) {
                     dispatch(getCartelera());
                 } else {
+                    console.log(movies.results)
                     dispatch({
                         type: TYPE.GET_SEARCH,
                         payload: movies.results
                     });
                 }
-            }).catch(error => console.error('No podemos obtener datos del servidor', error))
+            }).catch(error => console.error('No podemos obtener datos del servidor', error));
     }
 }

@@ -1,7 +1,14 @@
 @import '../../assets/sass/colors.scss';
 .movieInfo {
-    margin-top: 1em;
     height: 100vh;
+    .detail-container {
+        border: thin solid red;
+        display: flex;
+        justify-content: space-around;
+        .column {
+            text-align: right;
+        }
+    }
     .link {
         color: $ligthest;
         text-decoration: none;
@@ -35,7 +42,7 @@
             }
         }
     }
-    @media (max-width: 1199px) {
+    @media (max-width: 1980px) {
         background-repeat: no-repeat;
         background-size: cover;
         padding-top: 1em;
@@ -68,39 +75,6 @@
                 display: inline-block;
                 width: 100%;
             }
-        }
-    }
-    @media (min-width: 1200px) {
-        background-repeat: no-repeat;
-        background-size: cover;
-        .infoBox {
-            display: flex;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.5);
-            flex-wrap: wrap;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 2em;
-            border-radius: 0.5em;
-        }
-        .info {
-            width: 50%;
-            padding: 2em 0.5em;
-            color: $ligth;
-            h4 {
-                margin-top: 0.3em;
-                color: $ligth;
-            }
-        }
-        .outer-container {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.85) 10%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.95) 90%);
-            background-attachment: fixed;
-            margin: 0;
-            height: 70vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     }
 }

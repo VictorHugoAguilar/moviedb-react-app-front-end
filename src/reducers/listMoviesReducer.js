@@ -13,7 +13,12 @@ const listMoviesReducer = (state = initialState, action) => {
                 ...state,
                 movies:action.payload
             }
-
+        case TYPE.GET_SEARCH:{
+            return{
+                ...state,
+                movies:action.payload
+            }
+        }
         default: {
             return initialState;
         }

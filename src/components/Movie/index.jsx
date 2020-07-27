@@ -7,6 +7,8 @@ import { Card, Button } from 'react-bootstrap';
 // Importamos los componentes de fontawesome e iconos
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faHandPointRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+// importamos la imagen de no imagen
+import noImagen from '../../assets/img/noimg.png'
 
 class Movie extends Component {
     selectMovie(id) {
@@ -15,9 +17,13 @@ class Movie extends Component {
         return false;
     }
 
+    componentDidUpdate(){
+        console.log(this.props.movie.poster_path)
+    }
+
     render() {
         const { movie } = this.props;
-        let httpImage = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        let httpImage = (movie.poster_path === null) ? noImagen :`https://image.tmdb.org/t/p/w500${movie.poster_path}`;
         let overview = movie.overview;
 
         return (

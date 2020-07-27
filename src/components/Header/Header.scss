@@ -1,5 +1,12 @@
 @import '../../assets/sass/colors.scss';
 .header {
+    .navbar-input {
+        width: 100% !important;
+        border-radius: 0.5em;
+        border: none;
+        padding: 0.4em;
+        text-align: right;
+    }
     .navbar {
         background-color: $medium !important;
         @media (max-width: 999px) {

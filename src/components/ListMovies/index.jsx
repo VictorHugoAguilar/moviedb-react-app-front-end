@@ -8,6 +8,8 @@ import { CardColumns } from 'react-bootstrap';
 
 const ListMovie = (props) => {
 
+    console.log(props)
+
     return (
         <div className="listMovies">
             <CardColumns>

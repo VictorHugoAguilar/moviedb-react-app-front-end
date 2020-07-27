@@ -1,0 +1,9 @@
+@import '../../assets/sass/colors.scss';
+.fullListMovies {
+    height: 100%;
+    background-color: $dark;
+    .fullListMovies-Alert {
+        margin-top: 30px;
+        height: 100vh;
+    }
+}

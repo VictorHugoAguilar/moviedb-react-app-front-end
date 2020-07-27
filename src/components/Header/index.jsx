@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import {DebounceInput} from 'react-debounce-input';
 
 // Importamos los estilos personalizados con SASS
 import './Header.scss';
 import logo from '../../assets/img/logo.jpg'
 
-import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav,  NavDropdown } from 'react-bootstrap';
 
 
 
@@ -30,10 +31,16 @@ class Header extends Component {
                             <NavDropdown.Item href="#action/suspenso">Suspenso</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Form className="navbar-nav" inline>
-                        <FormControl  type="text" placeholder="Buscar Película" className="navbar-input mr-sm-2" />
-                        <Button className="navlink" >Buscar</Button>
-                    </Form>
+                    <div className="navbar-nav" >
+                        <DebounceInput
+                        className="navbar-input mr-sm-2"
+                        element="input" 
+                        debounceTimeout={400} 
+                        type="text" 
+                        placeholder="Buscar Película..." 
+                        value={this.props.query}
+                        onChange={(e) => this.props.searchData(e.target.value)}/>
+                    </div>
                 </Navbar.Collapse>
             </Navbar>
         </div>

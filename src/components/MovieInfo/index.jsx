@@ -8,6 +8,8 @@ import { faArrowCircleLeft, faExclamationCircle } from '@fortawesome/free-solid-
 import './MovieInfo.scss';
 // Importamos los componentes desde react bootstrap
 import { Badge, Button, Alert } from 'react-bootstrap';
+// importamos la imagen de no imagen
+import noImagen from '../../assets/img/noimg.png'
 
 const RUTA = CONSTANTS.RUTA;
 const API_KEY = CONSTANTS.API_KEY;
@@ -18,19 +20,19 @@ let poster, title, name, tagline, overview, release, background,
     runtime, status, homepage, rating, err, code;
 let genero = [];
 let company = [];
+let crew = [];
+let cast = [];
 
 class MovieInfo extends Component {
     state = {
         movieInfo: []
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidUpdate() {
         genero = [];
         company = [];
+        crew = [];
+        cast = [];
     }
 
     componentDidMount() {
@@ -47,6 +49,7 @@ class MovieInfo extends Component {
                 response.json().then((data) => {
                     let info;
                     if (response.status === 200) {
+                        console.log(data)
                         info = {
                             code: 200,
                             tagline: data.tagline,
@@ -61,7 +64,9 @@ class MovieInfo extends Component {
                             release: data.release_date,
                             background: data.backdrop_path,
                             runtime: data.runtime,
-                            homepage: data.homepage
+                            homepage: data.homepage,
+                            cast: data.credits.cast,
+                            crew: data.credits.crew
                         };
                     } else {
                         info = { 
@@ -77,6 +82,7 @@ class MovieInfo extends Component {
 
     // Obtenemos los datos mapeandolo en las variables
     hadlerGetDataFromState() {
+        console.log("hadlerGetDataFromState");
         const { movieInfo } = this.state;
         if (movieInfo[0] !== undefined && movieInfo[0].title) {
             movieInfo.map(info => (
@@ -89,13 +95,32 @@ class MovieInfo extends Component {
                 homepage = info.homepage,
                 rating = info.rating,
                 release = info.release,
-                background = `https://image.tmdb.org/t/p/original${info.background}`,
-                poster = `https://image.tmdb.org/t/p/w500${info.poster}`,
+                background = info.background,
+                poster = info.poster,
                 info.genres.map((gene) => (
                     genero.push(gene.name))
                 ),
                 info.companies.map((compa) => (
-                    company.push(compa.name)))
+                    company.push(compa.name))
+                ),
+                info.cast.map((actor) => {
+                    let auxAct = { 
+                        "order":actor.order,
+                        "name":actor.name,
+                        "character":actor.character,
+                        "img":actor.profile_path
+                    }
+                    cast.push(auxAct)
+                }),
+                info.crew.map((cre) => {
+                    let auxCre = { 
+                        "job":cre.job,
+                        "name":cre.name,
+                        "department":cre.department,
+                        "img":cre.profile_path
+                    }
+                    crew.push(auxCre)
+                })
             ));
         }else{
             movieInfo.map(info => (
@@ -109,7 +134,12 @@ class MovieInfo extends Component {
     // Renderizamos el componente
     render() {
         this.hadlerGetDataFromState();
-        const styles = { width: '100%', backgroundImage: background ? (`url(${background})`) : null }
+        console.log("CREW", crew);
+        console.log("CAST", cast);
+        let httpImageBackground = (background === undefined) ? null : `https://image.tmdb.org/t/p/original${background}`;
+        let httpImagePoster = (poster === undefined) ? noImagen : `https://image.tmdb.org/t/p/w500${poster}`;
+        const styles = { width: '100%', backgroundImage: `url(${httpImageBackground})`  }
+        
         return (
             <div className="movieInfo" style={styles}>
                { code === 500 ?  
@@ -125,7 +155,7 @@ class MovieInfo extends Component {
                         <div className="container-box">
                             <div className="infoBox">
                                 <div className="poster">
-                                    <img alt={title} src={poster} />
+                                    <img alt={title} src={httpImagePoster} />
                                 </div>
                                 <div className="info">
                                     <div className="movie-name">
@@ -136,6 +166,26 @@ class MovieInfo extends Component {
                                     <div className="overview">
                                         <h4>{tagline}</h4>
                                         <p>{overview}</p>
+                                    </div>
+
+                                    <div className="actors">
+                                    <h4> Actores</h4>
+                                    {
+                                        cast.map( actor => {
+                                            let papel = actor.character ? `( ${actor.character} )`: actor.character;
+                                            return `${ actor.name } ${ papel } `;
+                                        })
+                                    }
+                                    </div>
+                                    
+                                    <div className="crews">
+                                    <h4> Crew </h4>
+                                    {
+                                        crew.map( cre => {
+                                            let job = cre.job ? `( ${cre.job} )`: cre.job;
+                                            return `${cre.name} ${job} `;
+                                        })
+                                    }
                                     </div>
 
                                     <div className="genres-companies">
