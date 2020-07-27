@@ -4,7 +4,9 @@ import Movie from '../Movie';
 import './ListMovies.scss';
 // Importamos componentes de bootsrap
 import { CardColumns } from 'react-bootstrap';
-
+/**,
+ * class ListMovie
+ */
 const ListMovie = (props) => {
     return (
         <div className="listMovies">
@@ -21,5 +23,4 @@ const ListMovie = (props) => {
         </div>
     );
 }
-
 export default ListMovie;

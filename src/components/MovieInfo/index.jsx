@@ -10,11 +10,9 @@ import './MovieInfo.scss';
 import { Badge, Button, Alert } from 'react-bootstrap';
 // importamos la imagen de no imagen
 import noImagen from '../../assets/img/noimg.png'
-
 const RUTA = CONSTANTS.RUTA;
 const API_KEY = CONSTANTS.API_KEY;
 const LANGUAGE = CONSTANTS.LANGUAGE;
-
 // Declaramos las variables que rellenaremos desde el state
 let poster, title, name, tagline, overview, release, background,
     runtime, status, homepage, rating, err, code;
@@ -22,25 +20,26 @@ let genero = [];
 let company = [];
 let crew = [];
 let cast = [];
-
+/**
+ * Class MovieInfo
+ */
 class MovieInfo extends Component {
     state = {
         movieInfo: []
     }
-
+    // Método para cuando se actualiza el componente
     componentDidUpdate() {
         genero = [];
         company = [];
         crew = [];
         cast = [];
     }
-
+    // Método para cuando se monta el componente
     componentDidMount() {
         const { movieInfo } = this.state;
         // Obtenemos los datos del storage session
         let movieId = sessionStorage.getItem('movieId');
         let page = sessionStorage.getItem('Page');
-
         // Construimos la ruta del enlace
         let url = `${RUTA}/${page}/${movieId}?api_key=${API_KEY}&append_to_response=credits&language=${LANGUAGE}`;
         // Solicitamos la info desde la API con fetch
@@ -78,7 +77,6 @@ class MovieInfo extends Component {
                 })
             })
     }
-
     // Obtenemos los datos mapeandolo en las variables
     hadlerGetDataFromState() {
         const { movieInfo } = this.state;
@@ -108,7 +106,7 @@ class MovieInfo extends Component {
                         "character": actor.character,
                         "img": actor.profile_path
                     }
-                    cast.push(auxAct)
+                    return cast.push(auxAct)
                 }),
                 info.crew.map((cre) => {
                     let auxCre = {
@@ -117,7 +115,7 @@ class MovieInfo extends Component {
                         "department": cre.department,
                         "img": cre.profile_path
                     }
-                    crew.push(auxCre)
+                    return crew.push(auxCre)
                 })
             ));
         } else {
@@ -128,14 +126,12 @@ class MovieInfo extends Component {
             );
         }
     }
-
     // Renderizamos el componente
     render() {
         this.hadlerGetDataFromState();
         let httpImageBackground = background ? `https://image.tmdb.org/t/p/original${background}` : null;
         let httpImagePoster = poster ? `https://image.tmdb.org/t/p/w500${poster}` : noImagen;
         const styles = { width: '100%', backgroundImage: `url(${httpImageBackground})` }
-
         return (
             <div className="movieInfo" style={styles}>
                 {code === 500 ?
@@ -158,12 +154,10 @@ class MovieInfo extends Component {
                                             <h1>{title}</h1>
                                             <h4>{name}</h4>
                                         </div>
-
                                         <div className="overview">
                                             <h4>{tagline}</h4>
                                             <p>{overview}</p>
                                         </div>
-
                                         <div className="actors">
                                             <h4> Actores</h4>
                                             {
@@ -172,10 +166,10 @@ class MovieInfo extends Component {
                                                     let papel = actor.character ? `( ${actor.character} )` : actor.character;
                                                     return `${actor.name} ${papel} `;
                                                     }
+                                                    return null;
                                                 })
                                             }
                                         </div>
-
                                         <div className="crews">
                                             <h4> Crew </h4>
                                             {
@@ -184,10 +178,10 @@ class MovieInfo extends Component {
                                                     let job = cre.job ? `( ${cre.job} )` : cre.job;
                                                     return `${cre.name} ${job} `;
                                                     }
+                                                    return null;
                                                 })
                                             }
                                         </div>
-
                                         <div className="genres-companies">
                                             <h4> Genero</h4>
                                             {genero.map((gene, index) => (

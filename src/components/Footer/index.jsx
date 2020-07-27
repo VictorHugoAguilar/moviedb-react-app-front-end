@@ -4,7 +4,9 @@ import './Footer.scss';
 // Importamos fontAwesomeIcon y el icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/fontawesome-free-solid'
-
+/**
+ * Class Footer
+ */
 class Footer extends Component {
     render() {
         return (
@@ -16,7 +18,6 @@ class Footer extends Component {
         </div>
         );
     }
-
 }
 export default Footer;
 

@@ -1,44 +1,33 @@
 import React, { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
-
+// Obtenemos las constantes
 import CONSTANTS from '../../kconstants'
 // Importamos los estilos personalizados con SASS
 import './Header.scss';
 import logo from '../../assets/img/logo.jpg'
-
+// Importamos los componentes de react-bootstrap
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-
-
 const RUTA = CONSTANTS.RUTA;
 const API_KEY = CONSTANTS.API_KEY;
 const LANGUAGE = CONSTANTS.LANGUAGE;
-
-
-
-class Header extends Component {
-
-    /* componentDidMount(){
-         this.props.setActive()
-     }
+/**
+ * class Header
  */
+class Header extends Component {
+    // creamos el estado para los generos
     state = {
         generos: []
     }
-
-
+    // ComponentDidMount para inicializar datos para el compoenente 
     componentDidMount() {
         const { generos } = this.state;
-
         // Construimos la ruta del enlace
         let url = `${RUTA}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`;
-
         // Solicitamos la info desde la API con fetch
         fetch(url)
             .then((response) => {
                 response.json().then((data) => {
-                    console.log(response.status)
                     if (response.status === 200) {
-                        console.log(data.genres)
                         let datos = data.genres;
                         datos.map( res => ( generos.push(res) ) )
                     }
@@ -46,11 +35,9 @@ class Header extends Component {
                 this.setState({ generos });
             }).catch( error => console.error(error));
     }
-
-
+    // renderizamos el componente
     render() {
         const { generos } = this.state;
-
         return (<div className="header">
             <Navbar className="navbar" bg="dark" variant="dark" expand="lg">
                 <Navbar.Brand href="#home"><img src={logo} alt="logo" id="logo" /></Navbar.Brand>

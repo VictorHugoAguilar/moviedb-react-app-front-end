@@ -12,32 +12,34 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { getCartelera, searchMovies,getMostPopular, getEstrenos, getTopRated, getByGenero  } from '../../actions';
 // Importamos los estilos personalizados
 import './FullListMovies.scss';
+// Importamos JQUERY
 import $ from "jquery";
-
-
+/**
+ * class FullListMovies
+ */
 class FullListMovies extends Component {
-
+    // Método para obtener en la carga del componente los datos de películas
     componentDidMount() {
         // Seteamos por defecto las de cartelera
         this.props.getCartelera();
     }
-
+    // método para configurar la consulta
     setFetchMovies() {
         sessionStorage.setItem('Page', 'movie');
         return false;
     }
-
+    // metodo para setear como activo un boton
     setActive = () => {
         $('.list li').click(function () {
             $('.list .active').removeClass('active');
             $(this).addClass('active');
         })
     }
-
+    // Método para cuando se actualiza un componente
     componentDidUpdate() {
         // console.log("componentDidUpdate FullListMovies",this.props.movies.length);
     }
-
+    // Renderizamos el componente
     render() {
         return (
             <Fragment >
@@ -69,9 +71,7 @@ class FullListMovies extends Component {
         );
     }
 }
-
 const mapStateToProps = state => ({
     movies: state.movies.movies,
 })
-
 export default connect(mapStateToProps, { getCartelera, searchMovies, getMostPopular, getEstrenos, getTopRated, getByGenero })(FullListMovies);

@@ -9,18 +9,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faHandPointRight, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 // importamos la imagen de no imagen
 import noImagen from '../../assets/img/noimg.png'
-
+/**
+ * Class Movie
+ */
 class Movie extends Component {
     selectMovie(id) {
         sessionStorage.setItem('movieId', id);
         return false;
     }
-
+    // Renderizamos el componente
     render() {
         const { movie } = this.props;
         let httpImage = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : noImagen;
         let overview = movie.overview;
-
         return (
             <div className="movie">
                 <Card>
@@ -60,5 +61,4 @@ class Movie extends Component {
         );
     }
 }
-
 export default Movie;
