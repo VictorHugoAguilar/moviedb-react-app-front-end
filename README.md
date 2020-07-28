@@ -1,69 +1,97 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# App Movie DB
 
-## Available Scripts
+_Esta App, consume de la API de the movie db que muestra películas por criterios_
 
-In the project directory, you can run:
+Esta App, consume los servicios de la api the movie db, es una app básica, porque lo que se prentende es aprender a utilizar el flujo de react-redux. Utilizando acciones y reducers.
 
-### `yarn start`
+## Comenzando 🚀
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+_Descargar el proyecto._
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Instalar las dependencias y luego levantar el servidor node.
 
-### `yarn test`
+### Pre-requisitos 📋
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+_Que cosas necesitas para instalar el software y como instalarlas_
 
-### `yarn build`
+```
+Node,
+NPM
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Instalación 🔧
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+_Descargar las dependencias del proyecto_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+_Ejecutamos los siguientes comandos_
 
-### `yarn eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_con esto descargaremos las dependecias que estamos utilizando en nuestro proyecto_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+````
+"dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0",
+    "gh-pages": "^3.1.0",
+    "hash-router": "^0.4.0",
+    "jquery": "^3.5.1",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-debounce-input": "^3.2.2",
+    "react-dom": "^16.13.1",
+    "react-fontawesome": "^1.7.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "^4.4.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+````
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+_Para levantar la app ejecutamos el siguiente comando_
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+    npm start
+```
 
-## Learn More
+### Front-end 🔩
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+_Todo creado con react_
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Construido con 🛠️
 
-### Code Splitting
+_La app esta desarrollada con react-redux_
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias
+* [BOTSTRAP](https://react-bootstrap.github.io/components/overlays/) - El framework web usado
+* [FONTAWESOME](https://fontawesome.com/) - Icons - 
+* [SASS](https://sass-lang.com/) - Estilos SASS - Preprocesamiento CSS - 
 
-### Analyzing the Bundle Size
+## Autores ✒️
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* **Victor Hugo Aguilar** - *Trabajo Inicial* - [VictorHugoAguilar](https://github.com/VictorHugoAguilar)
 
-### Making a Progressive Web App
+## Licencia 📄
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+---
+⌨️ con ❤️ por [VictorHugoAguilar](https://github.com/VictorHugoAguilar) 😊
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# moviedb-react-app-front-end
